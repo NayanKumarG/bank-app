@@ -59,27 +59,46 @@ public class HDFCAccount implements BankAccountInf{
     }
 
     @Override
-    public double fetchBalance(String password) {
-        return 0;
+    public String fetchBalance(String password) {
+        if(this.password.equals((password)))
+            return "Your balacnce is: "+this.balance;
+        return "Incorrect passoword";
     }
 
     @Override
     public String addMoney(double amount) {
-        return null;
+        this.balance +=amount;
+        return "Amount is added successfully: New balance is:"+this.balance;
     }
 
     @Override
     public String withdrawMoney(double amount, String password) {
-        return null;
+        if(this.password.equals((password)))
+        {
+            if(this.balance<amount)
+            {
+                return "Insufficient balance: Current balance:"+this.balance;
+            }
+            else {
+                this.balance-=amount;
+                return "Amount deducted successfully: New balance:"+this.balance;
+            }
+        }
+        return "Incorrect password:";
     }
 
     @Override
     public String changePassword(String oldPassword, String newPassword) {
-        return null;
+        if(this.password.equals((oldPassword)))
+        {
+            this.password = newPassword;
+            return "Password update successfull:";
+        }
+        return "Wrong old password";
     }
 
     @Override
     public double calculateInterest(int year) {
-        return 0;
+        return (this.balance*year*this.rateOfInterest)/100.0;
     }
 }
