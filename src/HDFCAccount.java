@@ -99,6 +99,6 @@ public class HDFCAccount implements BankAccountInf{
 
     @Override
     public double calculateInterest(int year) {
-        return (this.balance*year*this.rateOfInterest)/100.0;
+        return (this.balance*year*this.rateOfInterest)/10;
     }
 }
